@@ -88,23 +88,24 @@
       const name2 = document.getElementById("name2").value.trim().toLowerCase();
       const result = document.getElementById("result");
 
-      const isSpecialFirstName = name => 
-        name.startsWith("abdullatif") || 
-        name.startsWith("abdulatif") || 
-        name.startsWith("tonsa");
+      const isSpecialFirstName = name =>
+        name.startsWith("abdullatif") || name.startsWith("abdulatif") || name.startsWith("tonsa");
 
-      const containsSpecialName = name => 
-        name.includes("sumaiya") || 
-        name.includes("sumaiyya") || 
-        name.includes("munira");
+      const containsSpecialSecondName = name =>
+        name.includes("sumaiya") || name.includes("sumaiyya") || name.includes("munira");
 
       let lovePercent;
 
-      if (
-        (isSpecialFirstName(name1) && containsSpecialName(name2)) ||
-        (isSpecialFirstName(name2) && containsSpecialName(name1))
-      ) {
-        lovePercent = "100% 💖";
+      if (isSpecialFirstName(name1) || isSpecialFirstName(name2)) {
+        // One of the names is a special first name
+        if (
+          (isSpecialFirstName(name1) && containsSpecialSecondName(name2)) ||
+          (isSpecialFirstName(name2) && containsSpecialSecondName(name1))
+        ) {
+          lovePercent = "100% 💖";
+        } else {
+          lovePercent = "0% 💔";
+        }
       } else {
         lovePercent = Math.floor(Math.random() * 101) + "%";
       }

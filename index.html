@@ -88,14 +88,21 @@
       const name2 = document.getElementById("name2").value.trim().toLowerCase();
       const result = document.getElementById("result");
 
-      const isAbdullatif = name => name.startsWith("abdullatif") || name.startsWith("abdulatif");
-      const isSumaiyaGroup = name => ["sumaiya", "sumaiyya", "munira"].includes(name);
+      const isSpecialFirstName = name => 
+        name.startsWith("abdullatif") || 
+        name.startsWith("abdulatif") || 
+        name.startsWith("tonsa");
+
+      const containsSpecialName = name => 
+        name.includes("sumaiya") || 
+        name.includes("sumaiyya") || 
+        name.includes("munira");
 
       let lovePercent;
 
       if (
-        (isAbdullatif(name1) && isSumaiyaGroup(name2)) ||
-        (isAbdullatif(name2) && isSumaiyaGroup(name1))
+        (isSpecialFirstName(name1) && containsSpecialName(name2)) ||
+        (isSpecialFirstName(name2) && containsSpecialName(name1))
       ) {
         lovePercent = "100% 💖";
       } else {
